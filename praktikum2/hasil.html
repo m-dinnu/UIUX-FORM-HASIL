@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Hasil Pemesanan Barang</title>
+</head>
+<body>
+
+    <!-- Menu Navigasi Atas -->
+    <table border="1" width="100%" cellpadding="5">
+        <tr>
+            <td align="center"><a href="form.html">Home</a></td>
+            <td align="center"><a href="#">Register</a></td>
+            <td align="center"><a href="#">Policy</a></td>
+            <td align="center"><a href="#">About</a></td>
+        </tr>
+    </table>
+
+    <br><br>
+
+    <!-- Tampilan Hasil Pemesanan -->
+    <table border="0" cellpadding="5">
+        <tr valign="top">
+            <!-- Kolom Kiri: Gambar Produk -->
+            <td width="200" align="center">
+                <table border="1" width="180" height="180">
+                    <tr>
+                        <td align="center" valign="middle">
+                            <!-- Tempat Gambar (Bisa dipanggil atau diset manual) -->
+                            <span id="output-gambar"><img src="image/baju gamis laki.jpg" alt="" width="180" height="180"></span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+
+            <!-- Kolom Kanan: Detail Informasi yang Dinamis -->
+            <td>
+                <table border="0" cellpadding="5">
+                    <tr>
+                        <td><strong>Title Here :</strong></td>
+                        <td><span id="res-title">MacBook Air £800</span></td>
+                    </tr>
+                    <tr valign="top">
+                        <td><strong>Description :</strong></td>
+                        <td><span id="res-desc">Year : 2009<br>Model : <br>Condition : Mint</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Account Number :</strong></td>
+                        <td><span id="res-account">123-456-789-0</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bank :</strong></td>
+                        <td><span id="res-bank">HSBC</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Account Holder :</strong></td>
+                        <td><span id="res-holder">Name Here</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transaction :</strong></td>
+                        <td><span id="res-trx">1</span></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            ☑ Send to Mobile Phone<br>
+                            ☑ Email me copy of transaction
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Send to Mobile Phone :</strong></td>
+                        <td><span id="res-phone">1234567890, 1234567891</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Send to Email :</strong></td>
+                        <td><span id="res-email">mfmm2g13@soton.ac.uk, fys_06@yahoo.com</span></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <br>
+                <button type="button">Pay using QuidLink</button>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Script JavaScript Sederhana buat Nangkep Inputan Form -->
+    <script>
+        // Mengambil data dari URL (hasil kiriman method GET)
+        const params = new URLSearchParams(window.location.search);
+
+        // Fungsi buat nampilin teks kalau ada isinya di form
+        function isiData(paramName, elementId) {
+            if (params.has(paramName)) {
+                let value = params.get(paramName);
+                // Ubah enter/baris baru di textarea jadi format HTML (<br>)
+                if(paramName === 'description') {
+                    value = value.replace(/\n/g, '<br>');
+                }
+                document.getElementById(elementId).innerHTML = value;
+            }
+        }
+
+        // Panggil fungsi untuk setiap kolom data
+        isiData('title', 'res-title');
+        isiData('description', 'res-desc');
+        isiData('account_number', 'res-account');
+        isiData('bank', 'res-bank');
+        isiData('account_holder', 'res-holder');
+        isiData('transaction', 'res-trx');
+        isiData('phone_number', 'res-phone');
+        isiData('email_address', 'res-email');
+    </script>
+
+</body>
+</html>
